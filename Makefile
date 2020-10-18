@@ -6,7 +6,7 @@
 #    By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 18:48:30 by msafflow          #+#    #+#              #
-#    Updated: 2020/10/10 18:48:31 by msafflow         ###   ########.fr        #
+#    Updated: 2020/10/18 16:14:30 by msafflow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,13 +35,13 @@ CFLAGS			= -O3 -Wall -Wextra -Werror -g -Iinc/ -Imlx/ -Ilibft/inc/
 LIBS			= -Lmlx -lmlx -framework OpenGL -framework AppKit -lm -Llibft -lft
 MLX				= libmlx.dylib
 LIBFT			= ./libft/libft.a
-NAME			= cub3d
+NAME			= cub3D
 
 all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(MLX) $(OBJS) $(INCS)
 				@cp mlx/$(MLX) .
-				clang ${CFLAGS} -o cub3d ${OBJS} ${LIBS}
+				clang ${CFLAGS} -o cub3D ${OBJS} ${LIBS}
 				@echo "Done"
 
 $(LIBFT):

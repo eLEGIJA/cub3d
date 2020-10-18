@@ -1,9 +1,9 @@
-R 2560 1440
+R 1280 720
 NO textures/1.xpm
 SO textures/2.xpm
 WE textures/3.xpm
-EA textures/4.xpm
-S textures/barrel.xpm
+EA textures/konoha.xpm
+S textures/osel.xpm
 F 184,113,39
 C 51,198,230
 
