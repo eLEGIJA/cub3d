@@ -6,7 +6,7 @@
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 18:44:26 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/18 16:32:10 by msafflow         ###   ########.fr       */
+/*   Updated: 2020/10/19 22:08:44 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ static void	check_valid(int i, int j, t_conf *conf, int *spr)
 		conf->error = 1;
 	if (ft_memchr("NSWE", conf->map[i][j], 5))
 		check_pos(conf, i, j);
-	if (conf->map[i][j] == '0')
+	if (conf->map[i][j] == '0' || conf->map[i][j] == '2')
 	{
 		if (conf->map[i + 1][j] == ' ' || conf->map[i][j + 1] == ' ' ||
 			conf->map[i - 1][j] == ' ' || conf->map[i][j - 1] == ' ' ||
 			conf->map[i + 1][j] == '\0' || conf->map[i][j + 1] == '\0' ||
-			conf->map[i - 1][j] == '\0' || conf->map[i][j - 1] == '\0' |
-			conf->map[i + 1][j] == '\t' || conf->map[i][j + 1] == '\t' ||
-			conf->map[i - 1][j] == '\t' || conf->map[i][j - 1] == '\t')
+			conf->map[i - 1][j] == '\0' || conf->map[i][j - 1] == '\0')
 			conf->error = 4;
+	}
+	if (conf->map[i][j] == '0')
+	{
 		if (((int)ft_strlen(conf->map[i - 1]) + 1 < j) ||
 			((int)ft_strlen(conf->map[i + 1]) + 1 < j))
 			conf->error = 4;
