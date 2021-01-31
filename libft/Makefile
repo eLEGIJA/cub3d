@@ -1,7 +1,7 @@
 NAME = libft.a
 
-INC_DIR		= 	./inc
-SRC_DIR		= 	./srcs
+INC_DIR		= 	./includes
+SRC_DIR		= 	./sources
 OBJ_DIR		= 	./obj
 PFT_DIR		= 	./pft
 

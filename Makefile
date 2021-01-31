@@ -3,43 +3,46 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+         #
+#    By: elegija <elegija@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 18:48:30 by msafflow          #+#    #+#              #
-#    Updated: 2020/10/18 16:14:30 by msafflow         ###   ########.fr        #
+#    Updated: 2021/01/31 06:50:44 by elegija          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			=	srcs/cub3d.c\
-                	srcs/parsing_main.c\
-					srcs/parsing_clr_and_res.c\
-					srcs/parsing_map.c\
-					srcs/parsing_pos.c\
-					srcs/parsing_utils.c\
-					srcs/rc_raycast.c\
-					srcs/rc_sprites.c\
-					srcs/rc_texture.c\
-					srcs/rc_utils.c\
-					srcs/mv.c\
-					srcs/bmp.c\
-					srcs/buttons.c\
+sources			=	sources/cub3d.c \
+					sources/flags.c \
+                	sources/parsing_main.c \
+					sources/rc_utils.c \
+					sources/mv.c \
+					sources/rc_texture_utils.c \
+					sources/rc_texture.c \
+					sources/buttons.c \
+					sources/bmp.c \
+					sources/parsing_clr_and_res.c \
+					sources/parsing_map.c \
+					sources/parsing_pos.c \
+					sources/parsing_utils.c \
+					sources/error.c \
+					sources/sort.c \
+					sources/rc_raycast.c \
+					sources/rc_sprites.c \
 
-INCS			=	inc/cub3d.h\
-					inc/keys.h
+includesS		=	includes/cub3d.h\
 
-OBJS			= $(SRCS:.c=.o)
+OBJS			= $(sources:.c=.o)
 
-CC				= clang
-RM				= rm -f
-CFLAGS			= -O3 -Wall -Wextra -Werror -g -Iinc/ -Imlx/ -Ilibft/inc/
-LIBS			= -Lmlx -lmlx -framework OpenGL -framework AppKit -lm -Llibft -lft
-MLX				= libmlx.dylib
-LIBFT			= ./libft/libft.a
 NAME			= cub3D
+CC				= clang
+CFLAGS			= -O3 -Wall -Wextra -Werror -g -Iincludes/ -Imlx/ -Ilibft/includes/
+RM				= rm -f
+MLX				= libmlx.dylib
+LIBS			= -Lmlx -lmlx -framework OpenGL -framework AppKit -lm -Llibft -lft
+LIBFT			= ./libft/libft.a
 
 all:			$(NAME)
 
-$(NAME):		$(LIBFT) $(MLX) $(OBJS) $(INCS)
+$(NAME):		$(LIBFT) $(MLX) $(OBJS) $(includesS)
 				@cp mlx/$(MLX) .
 				clang ${CFLAGS} -o cub3D ${OBJS} ${LIBS}
 				@echo "Done"
@@ -59,5 +62,7 @@ fclean:			clean
 					@make clean -C mlx 
 
 re:				fclean $(NAME)
+
+bonus:			all
 
 .PHONY:			all clean fclean re
