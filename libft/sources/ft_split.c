@@ -3,87 +3,87 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
+/*   By: elegija <elegija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:26:02 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:26:02 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/11 23:15:44 by msafflow          #+#    #+#             */
+/*   Updated: 2021/02/21 11:04:18 by elegija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static long		ft_words(char const *s, char c, long words)
+size_t		ft_w(char const *str, char c)
 {
-	while (s)
+	size_t	words;
+	size_t	i;
+
+	words = 0;
+	i = 0;
+	while (str[i])
 	{
-		if (*s == '\0')
-			return (0);
-		while (*s == c)
-			s++;
-		if (*s == '\0')
-			return (words);
-		s = ft_strchr(s, c);
-		words++;
+		while (str[i] == c)
+			i++;
+		if (str[i] != c && str[i])
+			words++;
+		while (str[i] != c && str[i])
+			i++;
 	}
 	return (words);
 }
 
-static void		splitfree(char **out)
+size_t		ft_l(char const *str, char c)
 {
-	size_t		i;
+	size_t	length;
+	size_t	i;
 
+	length = 0;
 	i = 0;
-	while (out[i])
+	while (str[i] == c)
+		i++;
+	while (str[i] != '\0' && str[i] != c)
 	{
-		free(out[i]);
+		length++;
 		i++;
 	}
-	free(out);
+	return (length);
 }
 
-static void		ft_wordsplit(size_t words, char c, char const *s, char **out)
+void		*ft_clean(char **arr, size_t words)
 {
-	size_t		wordlen;
-	char		**tmpout;
-	char const	*oldplc;
+	size_t	i;
 
-	tmpout = out;
-	while (words--)
+	i = -1;
+	while (++i < words)
+		free(arr[i]);
+	free(arr);
+	return (NULL);
+}
+
+char		**ft_split(char const *s, char c)
+{
+	size_t	w;
+	size_t	i;
+	size_t	j;
+	char	**arr;
+
+	i = 0;
+	w = -1;
+	if (!s || !c || !(arr = (char**)malloc(sizeof(char*) * (ft_w(s, c) + 1))))
+		return (NULL);
+	while (++w < ft_w(s, c))
 	{
-		while (*s == c)
-			s++;
-		oldplc = s;
-		s = ft_strchr(s, c);
-		if (s)
-			wordlen = s - oldplc + 1;
-		if (!s)
-			wordlen = ft_strchr(oldplc, '\0') - oldplc + 1;
-		*out = (char *)malloc(sizeof(char) * wordlen);
-		if (!out)
+		j = 0;
+		if (!(arr[w] = (char*)malloc(sizeof(char) * (ft_l(&s[i], c) + 1))))
 		{
-			splitfree(tmpout);
-			return ;
+			ft_clean(arr, i);
+			return (NULL);
 		}
-		ft_strlcpy(*out, oldplc, wordlen);
-		out++;
+		while (s[i] == c)
+			i++;
+		while (s[i] != c && s[i])
+			arr[w][j++] = s[i++];
+		arr[w][j] = '\0';
 	}
-	*out = 0;
-}
-
-char			**ft_split(char const *s, char c)
-{
-	char		**out;
-	size_t		words;
-
-	if (s == 0)
-		return (0);
-	words = 0;
-	words = ft_words(s, c, words);
-	out = (char **)malloc(sizeof(char*) * (words + 1));
-	if (!out)
-		return (0);
-	ft_wordsplit(words, c, s, out);
-	if (!out)
-		return (0);
-	return (out);
+	arr[w] = NULL;
+	return (arr);
 }

@@ -5,23 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:26:23 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:26:23 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/04 21:36:23 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 17:02:02 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlcpy(char *dst, const char *src, size_t size)
+size_t				ft_strlcpy(char *dest, const char *src, size_t length)
 {
-	char	*d;
+	unsigned char	*copy1;
+	unsigned char	*copy2;
+	size_t			i;
+	size_t			j;
 
-	if (!dst || !src)
+	i = 0;
+	copy1 = (unsigned char *)dest;
+	copy2 = (unsigned char *)src;
+	if (!copy1 && !copy2)
 		return (0);
-	d = dst;
-	if (size != 0)
-		d = ft_memccpy(dst, src, '\0', size - 1);
-	if (!d && size != 0)
-		*(dst + size - 1) = '\0';
-	return (ft_strlen(src));
+	while (copy2[i])
+		i++;
+	if (length == 0)
+		return (i);
+	j = 0;
+	while (j + 1 < length && copy2[j])
+	{
+		copy1[j] = copy2[j];
+		j++;
+	}
+	copy1[j] = '\0';
+	return (i);
 }

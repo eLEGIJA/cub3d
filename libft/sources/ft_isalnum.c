@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:23:23 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:23:23 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/10 17:19:46 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 17:08:36 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 int	ft_isalnum(int c)
 {
-	return (ft_isdigit(c) || ft_isalpha(c));
+	if ((c >= (unsigned char)'0' && c <= (unsigned char)'9') \
+		|| (c >= (unsigned char)'A' && c <= (unsigned char)'Z') \
+		|| (c >= (unsigned char)'a' && c <= (unsigned char)'z'))
+		return (1);
+	return (0);
 }

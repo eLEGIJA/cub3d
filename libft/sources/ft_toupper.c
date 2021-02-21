@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:27:04 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:27:04 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 23:27:36 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/12 23:27:36 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_toupper(int c)
+#include "libft.h"
+
+int	ft_toupper(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		c = c - 32;
+	if (c >= 97 && c <= 122)
+		return (c - 32);
 	return (c);
 }

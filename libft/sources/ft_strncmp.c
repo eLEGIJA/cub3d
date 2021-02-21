@@ -5,25 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:26:36 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:26:36 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 23:28:33 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/20 16:26:52 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int						ft_strncmp(const char *s1, const char *s2, size_t n)
+int					ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	const unsigned char *ch_s1 = (unsigned char*)s1;
-	const unsigned char *ch_s2 = (unsigned char*)s2;
+	size_t			i;
+	unsigned char	*copy1;
+	unsigned char	*copy2;
 
-	while (*ch_s1 == *ch_s2 && n && *ch_s1 != '\0')
-	{
-		n--;
-		ch_s1++;
-		ch_s2++;
-	}
-	if (!n)
+	copy1 = (unsigned char *)str1;
+	copy2 = (unsigned char *)str2;
+	if (n == 0)
 		return (0);
-	return (*ch_s1 - *ch_s2);
+	i = 0;
+	while ((copy1[i] != '\0') && (copy2[i] != '\0') && i < (n - 1))
+	{
+		if (copy1[i] != copy2[i])
+			break ;
+		i++;
+	}
+	return (copy1[i] - copy2[i]);
 }

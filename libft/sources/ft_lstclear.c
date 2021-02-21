@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:24:02 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:24:02 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 23:04:22 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/12 23:04:57 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 void		ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list	*it;
-	t_list	*tmp;
+	t_list	*new;
 
-	if (!lst)
-		return ;
-	it = *lst;
-	while (it)
+	if (lst)
 	{
-		tmp = it;
-		it = it->next;
-		ft_lstdelone(tmp, del);
+		while (*lst)
+		{
+			new = (*lst)->next;
+			ft_lstdelone(*lst, del);
+			(*lst) = new;
+		}
 	}
-	*lst = 0;
 }

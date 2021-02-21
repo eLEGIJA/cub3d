@@ -5,24 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:24:34 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:24:34 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/04 17:49:50 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 17:18:36 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t length)
 {
-	const void	*src2 = ft_memchr(src, c, n);
+	size_t			i;
+	unsigned char	*copy1;
+	unsigned char	*copy2;
 
-	if (n == 0)
-		return (0);
-	if (src2)
+	copy1 = (unsigned char*)dest;
+	copy2 = (unsigned char*)src;
+	i = 0;
+	while (i < length)
 	{
-		ft_memcpy(dst, src, src2 - src + 1);
-		return (dst + (src2 - src + 1));
+		copy1[i] = copy2[i];
+		if (copy1[i] == (unsigned char)c)
+			return ((void*)(dest + i + 1));
+		++i;
 	}
-	ft_memcpy(dst, src, n);
-	return (0);
+	return (NULL);
 }

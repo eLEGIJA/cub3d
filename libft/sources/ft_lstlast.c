@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:24:16 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:24:16 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 22:18:07 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/12 22:26:10 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 t_list		*ft_lstlast(t_list *lst)
 {
-	if (!lst)
-		return (0);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
+	t_list	*end;
+
+	end = lst;
+	if (lst)
+		while (end->next)
+			end = end->next;
+	return (end);
 }

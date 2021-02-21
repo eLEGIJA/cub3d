@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:23:53 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:23:53 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 22:37:15 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 17:09:41 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 void		ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*newlst;
+	t_list	*copy;
 
-	newlst = *lst;
-	if (*lst)
+	if (lst)
 	{
-		while (newlst->next != NULL)
-			newlst = newlst->next;
-		newlst->next = new;
+		if (*lst == NULL)
+			*lst = new;
+		else
+		{
+			copy = ft_lstlast(*(lst));
+			copy->next = new;
+		}
 	}
-	else
-		*lst = new;
 }

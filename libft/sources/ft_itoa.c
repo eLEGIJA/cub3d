@@ -5,50 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:23:49 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:23:49 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/01 00:15:15 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 16:59:49 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_itoa_len(int n)
+size_t		ft_length(int n)
 {
-	int		len;
+	size_t	i;
 
-	len = 0;
-	while (n > 9 || n < -9)
-	{
-		len++;
-		n /= 10;
-	}
-	len++;
-	if (n < 0)
-		len++;
-	return (len);
+	i = 1;
+	while (n /= 10)
+		i++;
+	return (i);
 }
 
 char		*ft_itoa(int n)
 {
-	int		len;
 	char	*str;
-	long	m;
+	size_t	length;
+	long	n_copy;
 
-	m = (long)n;
-	len = ft_itoa_len(n);
-	if ((str = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
-		return (0);
-	str[len] = '\0';
-	if (m < 0)
+	length = ft_length(n);
+	n_copy = (long)n;
+	if (n < 0)
 	{
-		str[0] = '-';
-		m = -m;
+		n_copy = (long)n * -1;
+		length++;
 	}
-	m == 0 ? *str = '0' : 0;
-	while (m != 0)
-	{
-		str[--len] = m % 10 + '0';
-		m /= 10;
-	}
+	str = (char *)malloc(sizeof(char) * length + 1);
+	if (!str)
+		return (NULL);
+	ft_bzero(str, length + 1);
+	str[--length] = n_copy % 10 + '0';
+	while (n_copy /= 10)
+		str[--length] = n_copy % 10 + '0';
+	if (n < 0)
+		*(str + 0) = '-';
 	return (str);
 }

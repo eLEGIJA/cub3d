@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:24:21 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:24:21 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 22:40:50 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 17:26:05 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,27 @@
 
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*tmp;
-	t_list	*newlst;
+	t_list	*new;
+	t_list	*copy;
+	t_list	*begin;
 
-	if (!lst)
-		return (0);
-	newlst = NULL;
-	while (lst)
+	if (lst)
 	{
-		tmp = ft_lstnew((*f)(lst->content));
-		if (!tmp)
+		copy = lst;
+		if (!(begin = ft_lstnew(f(copy->content))))
+			return (NULL);
+		copy = copy->next;
+		while (copy)
 		{
-			ft_lstclear(&newlst, del);
-			return (0);
+			if (!(new = ft_lstnew(f(copy->content))))
+			{
+				ft_lstclear(&begin, del);
+				return (NULL);
+			}
+			ft_lstadd_back(&begin, new);
+			copy = copy->next;
 		}
-		ft_lstadd_back(&newlst, tmp);
-		lst = lst->next;
+		return (begin);
 	}
-	return (newlst);
+	return (NULL);
 }

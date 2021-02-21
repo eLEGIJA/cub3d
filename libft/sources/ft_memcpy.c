@@ -5,37 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:24:50 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:24:50 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/13 17:16:55 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 17:18:05 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void					*ft_memcpy(void *dst, const void *src, size_t n)
+void				*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned long		*long_dst;
-	const unsigned long	*long_src;
-	unsigned char		*ch_dst;
-	const unsigned char	*ch_src;
-	unsigned long		i;
+	unsigned char	*new_dest;
+	unsigned char	*new_src;
+	size_t			i;
 
-	if (!dst && !src)
-		return (0);
-	ch_dst = dst;
-	ch_src = src;
+	new_dest = dest;
+	new_src = (unsigned char *)src;
 	i = 0;
-	while (i++ < n && ((unsigned long)dst & (sizeof(long) - 1)) != 0)
-		*ch_dst++ = *ch_src++;
-	long_dst = (unsigned long*)dst;
-	long_src = (const unsigned long*)src;
-	i = 0;
-	while (i++ < (unsigned long)n / sizeof(long))
-		*long_dst++ = *long_src++;
-	ch_dst = (unsigned char*)long_dst;
-	ch_src = (const unsigned char*)long_src;
-	i = 0;
-	while (i++ < (unsigned long)n % sizeof(long))
-		*ch_dst++ = *ch_src++;
-	return (dst);
+	if (src == NULL && dest == NULL)
+		return (NULL);
+	while (i++ < n)
+		*new_dest++ = *new_src++;
+	return (dest);
 }

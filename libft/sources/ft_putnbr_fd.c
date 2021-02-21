@@ -3,35 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
+/*   By: elegija <elegija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:25:40 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:25:40 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/09 22:40:28 by msafflow          #+#    #+#             */
+/*   Updated: 2021/02/21 11:04:43 by elegija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void				ft_putnbr_fd(long n, int fd)
+void		ft_putnbr_fd(long n, int fd)
 {
-	char			symb;
-	unsigned long	m;
+	long	copy;
 
-	if (n < 0)
+	copy = n;
+	if (fd < 0)
+		return ;
+	if (copy < 0)
 	{
 		write(fd, "-", 1);
-		n = -n;
+		copy = copy * -1;
 	}
-	m = (unsigned long)n;
-	if (m >= 10)
+	if (copy > 9)
 	{
-		ft_putnbr_fd(m / 10, fd);
-		symb = (m % 10) + '0';
-		write(fd, &symb, 1);
+		ft_putnbr_fd(copy / 10, fd);
+		ft_putnbr_fd(copy % 10, fd);
 	}
-	if (m >= 0 && m <= 9)
-	{
-		symb = m + '0';
-		write(fd, &symb, 1);
-	}
+	else
+		ft_putchar_fd(copy + '0', fd);
 }

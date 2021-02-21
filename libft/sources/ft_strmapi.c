@@ -5,29 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:26:31 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:26:31 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 21:06:23 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 17:03:26 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char				*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char		*ft_strmapi(char const *str, char (*f)(unsigned int, char))
 {
-	char			*dst;
-	unsigned int	i;
+	char	*new;
+	size_t	i;
+	size_t	length;
 
-	i = 0;
-	if (!s || !f)
-		return (0);
-	dst = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!dst)
-		return (0);
-	while (s[i] != '\0')
-	{
-		dst[i] = f(i, s[i]);
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
+	i = -1;
+	if (str == NULL || f == NULL)
+		return (NULL);
+	length = ft_strlen(str);
+	if (!(new = (char *)malloc(sizeof(char) * length + 1)))
+		return (NULL);
+	while (str[++i])
+		new[i] = f(i, str[i]);
+	new[i] = '\0';
+	return (new);
 }

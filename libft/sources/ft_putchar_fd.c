@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:25:27 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:25:27 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/09 22:33:26 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 16:55:40 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
+	if (fd < 0)
+		return ;
 	write(fd, &c, 1);
 }

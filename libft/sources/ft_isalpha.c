@@ -5,12 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:23:28 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:23:28 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 23:34:09 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/12 23:34:09 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include "libft.h"
+
+int		ft_isalpha(int c)
 {
-	return ((c > 64 && c < 91) || (c > 96 && c < 123));
+	if ((c >= (unsigned char)'A' && (unsigned char)'Z' >= c)\
+		|| (c >= (unsigned char)'a' && (unsigned char)'z' >= c))
+		return (1);
+	return (0);
 }

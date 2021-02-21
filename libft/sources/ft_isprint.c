@@ -5,12 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:23:45 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:23:45 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 23:33:42 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/12 23:33:42 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int		ft_isprint(int c)
 {
-	return (c >= 0x20 && c <= 0x7E);
+	return (c >= (unsigned char)32 && c < (unsigned char)127);
 }

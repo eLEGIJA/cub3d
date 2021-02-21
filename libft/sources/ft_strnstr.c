@@ -5,25 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:26:41 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:26:41 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 23:28:24 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 00:22:03 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*ft_strnstr(const char *bg, const char *ltle, size_t len)
+char	*ft_strnstr(const char *str1, const char *str2, size_t len)
 {
-	size_t		ltle_len;
+	size_t pos;
+	size_t i;
 
-	ltle_len = ft_strlen(ltle);
-	if (!ltle[0])
-		return ((char*)bg);
-	while (*bg && ltle_len <= len--)
+	if (!*str2)
+		return ((char*)str1);
+	pos = 0;
+	while (str1[pos] != '\0' && pos < len)
 	{
-		if (*bg == *ltle && !ft_strncmp(bg, ltle, ltle_len))
-			return ((char *)bg);
-		bg++;
+		if (str1[pos] == str2[0])
+		{
+			i = 1;
+			while (str2[i] != '\0' && str1[pos + i] == str2[i] && \
+			(pos + i) < len)
+				++i;
+			if (str2[i] == '\0')
+				return ((char*)&str1[pos]);
+		}
+		++pos;
 	}
 	return (0);
 }

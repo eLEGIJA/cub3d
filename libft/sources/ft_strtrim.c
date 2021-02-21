@@ -5,25 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:26:51 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:26:51 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/10 21:28:39 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 16:52:15 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strtrim(char const *s1, char const *set)
+char		*ft_strtrim(char const *str, char const *set)
 {
-	size_t	start;
 	size_t	end;
+	char	*new;
 
-	if (!s1)
-		return (0);
-	start = 0;
-	end = ft_strlen(s1);
-	while (start < end && ft_strchr(set, *(s1 + start)))
-		start++;
-	while (start < end && ft_strchr(set, *(s1 + end - 1)))
+	if (!str)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(str));
+	while (*str && ft_strchr(set, *str))
+		str++;
+	end = ft_strlen(str);
+	while (end && ft_strchr(set, str[end]))
 		end--;
-	return (ft_substr(s1, start, end - start));
+	new = ft_substr((char*)str, 0, end + 1);
+	return (new);
 }

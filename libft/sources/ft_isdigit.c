@@ -5,12 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:23:40 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:23:40 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 23:33:51 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/12 23:33:51 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int		ft_isdigit(int c)
 {
-	return (c >= '0' && c <= '9');
+	if (c >= (unsigned char)'0' && (unsigned char)'9' >= c)
+		return (1);
+	return (0);
 }

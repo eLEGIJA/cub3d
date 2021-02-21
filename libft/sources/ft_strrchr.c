@@ -5,25 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:26:46 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:26:46 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 23:28:14 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 16:58:57 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char					*ft_strrchr(const char *str, int c)
+char		*ft_strrchr(const char *s, int c)
 {
-	const char *sym;
-	const char *tmp = NULL;
+	char	*last;
+	size_t	i;
 
-	if (!c)
-		return ((char *)str + ft_strlen(str));
-	sym = ft_strchr(str, c);
-	while (sym)
+	last = (char *)s;
+	i = ft_strlen(s);
+	while (i > 0)
 	{
-		tmp = sym;
-		sym = ft_strchr(sym + 1, c);
+		if (last[i] == (char)c)
+			return (last + i);
+		i--;
 	}
-	return ((char *)tmp);
+	if (last[i] == (char)c)
+		return (last);
+	return (0);
 }

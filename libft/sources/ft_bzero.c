@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:23:15 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:23:15 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 23:34:21 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/12 23:34:21 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,13 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, 0, n);
+	char	*ptr;
+	size_t	i;
+
+	if (!n)
+		return ;
+	ptr = s;
+	i = 0;
+	while (i < n)
+		*(ptr + i++) = 0;
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:24:26 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:24:26 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/12 21:21:01 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 16:58:13 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 t_list		*ft_lstnew(void *content)
 {
-	t_list	*new_elem;
+	t_list	*new;
 
-	new_elem = (t_list*)malloc(sizeof(t_list));
-	if (!new_elem)
-		return (0);
-	new_elem->content = content;
-	new_elem->next = NULL;
-	return (new_elem);
+	if (!(new = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

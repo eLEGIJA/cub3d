@@ -5,24 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:26:55 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:26:55 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/09 23:39:25 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/09 23:45:33 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char		*ft_substr(char const *str, unsigned int start, size_t len)
 {
-	char *dst;
+	char	*sub;
 
-	if (!s || len == 0 || start >= ft_strlen(s))
+	if (!str)
+		return (NULL);
+	if (ft_strlen(str) < start)
 		return (ft_strdup(""));
-	if (start + len > ft_strlen(s))
-		len = ft_strlen(s) - start;
-	dst = (char *)malloc(sizeof(char) * (len + 1));
-	if (!dst)
-		return (0);
-	ft_strlcpy(dst, s + start, len + 1);
-	return (dst);
+	if (!(sub = (char *)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	ft_strlcpy(sub, str + start, len + 1);
+	return (sub);
 }

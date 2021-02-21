@@ -5,20 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:23:19 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:23:19 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/08 20:30:16 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/13 17:28:40 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_calloc(size_t nmemb, size_t size)
+void		*ft_calloc(size_t num, size_t size)
 {
-	void	*newmem;
+	void	*link;
 
-	newmem = (void*)malloc(nmemb * size);
-	if (!newmem)
-		return (0);
-	ft_memset(newmem, 0, nmemb * size);
-	return (newmem);
+	if (!(link = malloc(num * size)))
+		return (NULL);
+	ft_bzero(link, (num * size));
+	return (link);
 }

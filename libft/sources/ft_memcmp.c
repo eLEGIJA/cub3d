@@ -5,26 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msafflow <elegija4mlg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:24:46 by msafflow          #+#    #+#             */
-/*   Updated: 2020/10/14 16:24:46 by msafflow         ###   ########.fr       */
+/*   Created: 2020/05/04 21:23:04 by msafflow          #+#    #+#             */
+/*   Updated: 2020/05/04 21:35:21 by msafflow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int						ft_memcmp(const void *s1, const void *s2, size_t n)
+int					ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	const unsigned char *ch_s1 = s1;
-	const unsigned char *ch_s2 = s2;
+	unsigned char	*copy1;
+	unsigned char	*copy2;
+	size_t			i;
 
+	i = 0;
 	if (n == 0)
 		return (0);
-	while (n--)
+	copy1 = (unsigned char *)str1;
+	copy2 = (unsigned char *)str2;
+	while (copy1[i] == copy2[i] && i < n)
 	{
-		if (*ch_s1 != *ch_s2)
-			return (*ch_s1 - *ch_s2);
-		ch_s1++;
-		ch_s2++;
+		i++;
+		if (i == n)
+			return (0);
 	}
-	return (0);
+	return ((int)(copy1[i] - copy2[i]));
 }
